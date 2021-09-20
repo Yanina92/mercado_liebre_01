@@ -1,13 +1,14 @@
 const express = require('express');
 const app = express();
-const path = require('path');
-const PORT = process.env.PORT || 3000;
+const port= 3033
+const path = require('path')
 
+app.use(express.static('public'))
 
-app.get('/', (req, res) => res.send("Hola Mundo!"));
+app.listen(port, () => console.log("Ejecutando servidor en " + port));
 
-app.get('/html', (req, res) => res.sendFile(path.join(__dirname, "/views/index.html")));
+app.get('/home',(req,res) => {res.sendFile(path.join(__dirname, './views/home.html'))});
 
-app.listen(PORT, () => {
-    console.log('App listening on http://localhost:3000');
-});
+app.get('/login',(req,res) => {res.sendFile(path.join(__dirname, './views/login.html'))});
+
+app.get('/register',(req,res) => {res.sendFile(path.join(__dirname, './views/register.html'))});
